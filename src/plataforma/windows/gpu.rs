@@ -75,8 +75,11 @@ fn listar_placas() -> Result<Vec<Placa>> {
             Err(e) => return Err(e).context("EnumAdapters1"),
         };
         let desc = unsafe { adaptador.GetDesc1() }.context("GetDesc1")?;
-        if desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE.0 as u32 != 0 {
-            continue; // "Microsoft Basic Render Driver"
+        // "Microsoft Basic Render Driver": nem sempre vem marcado como software,
+        // então também comparamos com o identificador conhecido dele.
+        let software = desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE.0 as u32 != 0;
+        if software || (desc.VendorId, desc.DeviceId) == (0x1414, 0x8C) {
+            continue;
         }
         let fim = desc
             .Description
