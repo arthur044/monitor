@@ -186,5 +186,3 @@ CREATE INDEX idx_metrics_ts ON metrics(ts, key);
 | Contadores PDH de GPU têm uma instância por engine/processo | Somar por adaptador (`luid`) e pegar o máximo entre as engines 3D, Compute e Video, como faz o Gerenciador de Tarefas. |
 | Uso de CPU do próprio monitor | Coleta de processos a cada 5 s, sem repaint da UI quando a janela está oculta, gravação em lote a cada 10 s. |
 | Relatório no horário com o PC em suspensão | O agendador compara "agora ≥ horário" e verifica se o relatório de hoje já existe. Ao acordar, gera se ainda estiver no mesmo dia. Dias perdidos se geram pela aba Histórico. |
-
----
