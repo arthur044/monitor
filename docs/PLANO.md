@@ -15,6 +15,9 @@
 | Alertas | Notificação do Windows (toast) **e** registro no relatório |
 | Relatório | HTML autocontido com gráficos SVG, gerado em horário fixo **e** por um botão manual |
 | Histórico | SQLite, 90 dias de retenção |
+| Horário do relatório | 23:00 (padrão, configurável) |
+| Idioma da interface | Português (pt-BR) |
+| Distribuição | `.exe` avulso (build release, sem instalador) |
 
 ---
 
@@ -145,7 +148,7 @@ CREATE INDEX idx_metrics_ts ON metrics(ts, key);
 
 ## Relatório de fim do dia
 
-- **Quando:** no horário configurado (padrão 23:00) e pelo botão manual. Como os dados ficam no SQLite, o botão também gera relatórios de **dias passados**, o que cobre os dias em que o PC estava desligado no horário.
+- **Quando:** no horário configurado (23:00) e pelo botão manual. Como os dados ficam no SQLite, o botão também gera relatórios de **dias passados**, o que cobre os dias em que o PC estava desligado no horário.
 - **Onde:** `Documentos\Monitor\Relatorios\2026-09-26.html` (configurável).
 - **Conteúdo:**
   1. Resumo: tempo ligado, tempo ativo e tempo ocioso, número de alertas.
@@ -185,9 +188,3 @@ CREATE INDEX idx_metrics_ts ON metrics(ts, key);
 | Relatório no horário com o PC em suspensão | O agendador compara "agora ≥ horário" e verifica se o relatório de hoje já existe. Ao acordar, gera se ainda estiver no mesmo dia. Dias perdidos se geram pela aba Histórico. |
 
 ---
-
-## Em aberto
-
-- Horário padrão do relatório (proposta: 23:00).
-- Idioma da interface (proposta: português).
-- Distribuição: `.exe` avulso ou instalador MSI (`cargo-wix`).
